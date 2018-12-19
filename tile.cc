@@ -3,8 +3,28 @@
 #include "log.h"
 using namespace std;
 
-Tile::Tile(Point coordinate):
- symbol{""}, coordinate{coordinate}, occupant{nullptr} {}
+Tile::Tile(Point coordinate, char symbol):
+ symbol{string(1,symbol)}, coordinate{coordinate}, occupant{nullptr} {
+  if (symbol == '.') {
+    isOccupiableByPlayer = true;
+    isOccupiableByEnemy = true;  
+  } else if (symbol == '|') {
+    isOccupiableByPlayer = false;
+    isOccupiableByEnemy = false;  
+  } else if (symbol == '-') {
+    isOccupiableByPlayer = false;
+    isOccupiableByEnemy = false;  
+  } else if (symbol == ' ') { 
+    isOccupiableByPlayer = false;
+    isOccupiableByEnemy = false;  
+  } else if (symbol == '+') {
+    isOccupiableByPlayer = true;
+    isOccupiableByEnemy = false;  
+  } else if (symbol == '#') {
+    isOccupiableByPlayer = true;
+    isOccupiableByEnemy = false;  
+  }
+}
 
 Tile::~Tile() {
 }

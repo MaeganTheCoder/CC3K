@@ -5,19 +5,24 @@
 #include "point.h"
 #include "occupant.h"
 
+using namespace std;
+
 class Tile {
+
  protected:
-  std::string symbol;
+  string symbol;
   Point coordinate;
   bool isOccupiableByPlayer, isOccupiableByEnemy;
+
  public:
   Occupant *occupant;
-  Tile(Point coordinate);
-  virtual  ~Tile()=0; //pure virtual method
-  std::string getSymbol();
+  Tile(Point coordinate, char symbol);
+  ~Tile();
+  string getSymbol();
   Point getCoordinate();
   bool getIsOccupiableByPlayer();
   bool getIsOccupiableByEnemy();
+
 };
 
 #endif

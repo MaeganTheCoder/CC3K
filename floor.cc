@@ -2,12 +2,6 @@
 #include "log.h"
 #include "point.h"
 #include "tile.h"
-#include "floortile.h"
-#include "verticalwall.h"
-#include "blank.h"
-#include "door.h"
-#include "hallway.h"
-#include "horizontalwall.h"
 #include "vampire.h"
 #include "werewolf.h"
 #include "goblin.h"
@@ -169,14 +163,9 @@ uint Floor::getColCount() {
 }
 
 Tile *Floor::createTile(char c, Point coordinates) {
-  if (c == '.')  return new FloorTile(coordinates);
-  else if (c=='|') return new VerticalWall(coordinates);
-  else if (c=='-') return new HorizontalWall(coordinates);
-  else if (c==' ') return new Blank(coordinates);
-  else if (c=='+') return new Door(coordinates);
-  else if (c=='#') return new Hallway(coordinates);
+  if (c == '.' || c == '|' || c == '-' || c == ' ' || c == '+' || c == '#' )  return new Tile(coordinates, c);
 
-  Tile *tile = new FloorTile(coordinates);
+  Tile *tile = new Tile(coordinates, c);
   Occupant *occupant = nullptr;
   if (c=='@') {
     LOG("IM A PC");
